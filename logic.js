@@ -10,7 +10,14 @@ document.addEventListener("DOMContentLoaded", function () {
   highlight.classList.add('highlight');
   document.body.appendChild(highlight);
 
-  let coordinates;
+  //defines coordinate variables
+  let coordinates = {
+    top: 0,
+    left: 0,
+    width: 0,
+    height: 0
+  };
+  let previousCoords = {};
 
   //gets the top, left corner of cursor...where to start highlight
   function addHighlight() {
@@ -27,32 +34,18 @@ document.addEventListener("DOMContentLoaded", function () {
     highlight.style.width = `${coordinates.width}px`;
     highlight.style.height = `${coordinates.height}px`;
     highlight.style.transform = `translate(${coordinates.left}px, ${coordinates.top}px)`;
-
-    document.elementFromPoint(`${coordinates.left}`, `${coordinates.top}`).style.color = '#ff8c00';
-
-    document.elementFromPoint(previousCoords).style.color = '#ffffff';
-
-    console.log(previousCoords);
-    // this.style.color = '#ff8c00';
+    //check if coordinates have changed, if so, convert color of text back to white, otherwise leave it orange
+    if (coordinates.top !== previousCoords.y || coordinates.left !== previousCoords.x) {
+      document.elementFromPoint(previousCoords.x, previousCoords.y).style.color = '#ffffff';
+      previousCoords.x = coordinates.left;
+      previousCoords.y = coordinates.top;
+    }
+    this.style.color = '#ff8c00';
   }
-  let previousCoords;
-console.log('coords: ' + coordinates.top );
-  if (coordinates) {
-    previousCoords = `${coordinates.left}, ${coordinates.top}`;
-  }
-
-
-
-  // if (coordinates.top != test)
-
-  // function removeHighlight() {
-  //   this.style.color = '#ffffff';
-  // }
 
   //'mouseenter' fires once when cursor first enters field. 'mouseover' fires every time cursor is moved
   links.forEach(link => {
     link.addEventListener('mouseenter', addHighlight);
-    // link.addEventListener('mouseleave', removeHighlight);
   })
 
 });
