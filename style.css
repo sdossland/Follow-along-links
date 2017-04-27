@@ -1,1 +1,44 @@
-.highlight {}
+* {
+    margin: 0;
+}
+body {
+    background-color: cadetblue;
+    color: #ffffff;
+    font-family: Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter, monospace;
+}
+a {
+    text-decoration: none;
+    color: #ffffff;
+}
+/*a:hover {*/
+    /*color: #ff8c00 !important;*/
+/*}*/
+nav {
+    position: fixed;
+    width: 100%;
+    padding-top: 30px;
+    font-size: 1.2em;
+    font-weight: 600;
+    /*background-color: cadetblue;*/
+}
+.menu {
+    margin-left: 16%;
+}
+li {
+    display: inline-block;
+    margin: 0 28px;
+}
+.wrapper {
+    width: 50%;
+    margin: auto;
+    padding-top: 90px;
+    overflow: scroll;
+}
+.highlight {
+    z-index: -1;
+    transition: all 0.3s;
+    position: absolute;
+    top: 0;
+    background-color: #ffffff !important;
+    border-radius: 5px;
+}
